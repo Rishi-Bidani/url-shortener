@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-
+<h1 class="title">Shorten Your URL</h1>
+<section class="form-container">
+    <div class="form">
+        <label for="fullLink">Enter Full Link</label>
+        <input type="text"
+               name="fullLink"
+               id="fullLink"
+               placeholder="Full Link"
+        >
+        <button id="submit">Submit</button>
+    </div>
+    <div class="output">
+        Your Link: <span id="yourLink"></span>
+    </div>
+</section>
+<script>
+    const submit = document.getElementById("submit");
+    const output = document.getElementById("yourLink")
+    submit.addEventListener("click", () => {
+        const linkData = {fullLink: document.querySelector("#fullLink").value};
+        fetch("/posts/submit-link", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(linkData)
+        }).then(async res=>{
+            const key = await res.json()
+            output.textContent = `localhost:3000/${key}`;
+        })
+    })
+</script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+:root {
+    --space-cadet: #2d3047ff;
+    --maize-crayola: #e8c547ff;
+    --powder-blue: #a0cfd3ff;
+    --cool-grey: #8d94baff;
+    --mountbatten-pink: #9a7aa0ff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: var(--space-cadet);
+    height: 100vh;
+}
+
+.flex{
+    display: flex;
+}
+
+.auto-margin{
+    margin: auto;
+}
+
+.border-radius-1{
+    border-radius: 1.5rem;
+}
+.text-center{
+    text-align: center;
+}

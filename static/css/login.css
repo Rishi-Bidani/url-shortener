@@ -1,0 +1,57 @@
+.loginbox {
+    width: 50%;
+    min-height: 50%;
+    background-color: white;
+    box-shadow: 2px 2px 20px 10px black;
+}
+
+.title {
+    width: 50%;
+    padding: 1rem 0;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.title:hover{
+    background-color: var(--powder-blue);
+}
+
+.title-active{
+    background-color: var(--powder-blue);
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    margin: auto;
+    padding: 2rem 1rem;
+}
+
+input[type="text"], input[type="password"]{
+    padding: 0.5rem;
+}
+
+button{
+    margin: 1rem 0;
+    padding: 1rem 0;
+    cursor: pointer;
+    background-color: var(--powder-blue);
+    border: 1px solid black;
+}
+
+/* Media Queries */
+@media screen and (max-width: 700px) {
+    .loginbox {
+        width: 90%;
+    }
+    form{
+        width: 90%;
+    }
+}

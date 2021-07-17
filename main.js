@@ -13,7 +13,7 @@ app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 //For Form data etc
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: false}))
 // Post Requests
 app.use("/posts", posts.router);
 

@@ -5,12 +5,13 @@ const {KeyGen} = require("./KeyGen");
 const dotenv = require("dotenv").config({path: path.resolve(__dirname, "../.env")});
 
 class UseMongo {
-    constructor() {
+    constructor(dbname, table) {
         this.password = process.env.DB_PASS;
-        this.dbname = process.env.DB_NAME;
+        // this.dbname = process.env.DB_NAME;
+        this.dbname = dbname;
         this.user = process.env.DB_USER;
         this.uri = `mongodb+srv://${this.user}:${this.password}@cluster0.oqyh2.mongodb.net/shortener?retryWrites=true&w=majority`
-        this.table = "urls"
+        this.table = table;
     }
 
     async access() {
@@ -41,7 +42,7 @@ class UseMongo {
         if (!unique) {
             return key
         } else {
-            await genKey()
+            await this.genKey()
         }
     }
 
@@ -54,6 +55,21 @@ class UseMongo {
         return {
             data: finish.ops
         }
+    }
+
+    // Authentication
+    async register(name, username, password){
+        const user = await this.access();
+        const register = await user.insertOne({
+            name: name,
+            username: username,
+            password: password
+        })
+        return "Registered"
+    }
+
+    async login(username, password){
+        
     }
 
 }

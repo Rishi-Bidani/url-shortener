@@ -15,7 +15,9 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "geoip-lite": "^1.4.2",
-    "mongodb": "^3.6.10"
+    "knex": "^0.95.7",
+    "mongodb": "^3.6.10",
+    "pg": "^8.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

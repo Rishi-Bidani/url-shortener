@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const bcrypt = require("bcrypt");
+const db = require("../backendjs/sqlknex")
 
 const {UseMongo} = require("../backendjs/mongo");
 const usemongo = new UseMongo("shortener", "urls");
@@ -12,8 +13,18 @@ const registermongo = new UseMongo("authenticate", "details")
 router.post("/register", async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body["registerPassword"], 10);
-        const {registerName, registerUsername} = req.body;
-        registermongo.register(registerName, registerUsername, hashedPassword).then((data) => {
+        const {registerName, registerUsername, registerEmail} = req.body;
+        // registermongo.register(registerName, registerUsername, hashedPassword).then((data) => {
+        //     console.log(data)
+        //     res.status(201).send()
+        // })
+        console.log(registerName, registerUsername, hashedPassword)
+        db.insert("authentication", [{
+            fullname: registerName,
+            username: registerUsername,
+            password: hashedPassword,
+            email: registerEmail
+        }]).then(data=>{
             console.log(data)
             res.status(201).send()
         })

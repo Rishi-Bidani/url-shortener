@@ -19,6 +19,14 @@ class DB{
         const result = await knex(table).insert(data)
         return result
     }
+    static async checkUnique(table, column, value){
+        const result = await knex(table).where(column, value);
+        return result.length === 0;
+    }
 }
+
+// DB.checkUnique("authentication", "username", "rib").then(data=>{
+//     console.log(data)
+// })
 
 module.exports = DB

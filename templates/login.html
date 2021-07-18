@@ -70,6 +70,7 @@
                placeholder="Password"
                required
         >
+        <span id="errmsg"></span>
         <button type="submit">Register</button>
     </form>
 </section>
@@ -79,20 +80,43 @@
     const form2 = document.getElementById("register");
     const loginButton = document.getElementById("loginButton");
     const regButton = document.getElementById("registerButton");
-
-    regButton.addEventListener("click", ()=>{
+//    =======================
+    const errmsg = document.getElementById("errmsg")
+</script>
+<script>
+    regButton.addEventListener("click", () => {
         form1.style.display = "none";
         loginButton.classList.remove("title-active");
         regButton.classList.add("title-active");
         form2.style.display = "flex";
     });
-    loginButton.addEventListener("click", ()=>{
+    loginButton.addEventListener("click", () => {
         form2.style.display = "none";
         regButton.classList.remove("title-active");
         loginButton.classList.add("title-active");
         form1.style.display = "flex"
     });
     form2.style.display = "none";
+</script>
+<!-- For Register -->
+<script>
+    document.forms['register'].addEventListener("submit", (event) => {
+        event.preventDefault();
+        fetch(event.target.action, {
+            method: "POST",
+            body: new URLSearchParams(new FormData(event.target))
+        }).then(async resp => {
+            const code = resp.status;
+            if (code === 201) {
+                if(!alert("Successful")){
+                    window.location.reload();
+                }
+            } else if (code === 422) {
+                console.log("Failed")
+                errmsg.innerText = "Please Enter Unique Username or Email"
+            }
+        })
+    })
 </script>
 </body>
 </html>

@@ -47,10 +47,23 @@ router.post("/register", async (req, res) => {
 })
 
 // Login
-router.post("/login", (req, res)=>{
+router.post("/login", async (req, res)=>{
     const {username, password} = req.body
-    console.log(username, password)
-    res.end()
+    const user = await db.find(authtable, "username", username)
+    if(user.length === 1){
+        try {
+            if(await bcrypt.compare(password, user[0].password)){
+                req.session.userId = username;
+                res.redirect(`/dashboard`)
+            }else{
+                res.status(422).json("Incorrect Password")
+            }
+        }catch{
+            res.status(422).json("ERROR")
+        }
+    }else{
+        res.status(406).json("Could Not Find User")
+    }
 })
 
 // Submit Link for shortening

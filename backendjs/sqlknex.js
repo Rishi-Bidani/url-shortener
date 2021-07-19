@@ -23,6 +23,10 @@ class DB{
         const result = await knex(table).where(column, value);
         return result.length === 0;
     }
+    static async find(table, column, value){
+        const result = await knex(table).where(column, value)
+        return result
+    }
 }
 
 // DB.checkUnique("authentication", "username", "rib").then(data=>{

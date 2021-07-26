@@ -66,7 +66,8 @@ app.get('/ip', (req, res) => {
 
 app.get("/dashboard", redirectHome, (req, res)=>{
     const user = req.session.userId
-    res.send(user+"Logged In")
+    // res.send(user+"Logged In")
+    res.render("dashboard")
 })
 
 const port = process.env.PORT || 5000;

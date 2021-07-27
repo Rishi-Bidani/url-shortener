@@ -1,9 +1,17 @@
 #data-container{
     width: 60%;
+    margin-top: 1rem;
+}
+
+header{
+    width: 60%;
+    height: 10rem;
+    background-color: red;
 }
 
 .document {
-    margin: 2rem 0;
+    /*margin: 2rem 0;*/
+    border-bottom: 2px solid black;
     padding: 1rem 0.5rem;
     background-color: white;
     min-height: 5rem;
@@ -23,10 +31,7 @@ img{
 }
 
 @media screen and (max-width: 750px){
-    #data-container{
+    header, #data-container{
         width: 90%;
-    }
-    .document {
-        margin: 1rem 0;
     }
 }

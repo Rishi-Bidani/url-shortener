@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
-<body class="flex flex-center">
+<body>
 <!--    <%- JSON.stringify(data) %>-->
-<section id="data-container">
+<header class="auto-margin">
+
+</header>
+<section id="data-container" class="auto-margin">
     <% for(let i=0; i< data.length; i++) {%>
     <div class="document flex">
         <img src="<%= JSON.stringify(data[i].favicon).slice(1, -1) %>/favicon.ico"

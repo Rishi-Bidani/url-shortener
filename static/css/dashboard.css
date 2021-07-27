@@ -1,0 +1,32 @@
+#data-container{
+    width: 60%;
+}
+
+.document {
+    margin: 2rem 0;
+    padding: 1rem 0.5rem;
+    background-color: white;
+    min-height: 5rem;
+    word-wrap: break-word
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    height: 5rem;
+}
+
+.content{
+    width: 100%;
+}
+
+@media screen and (max-width: 750px){
+    #data-container{
+        width: 90%;
+    }
+    .document {
+        margin: 1rem 0;
+    }
+}

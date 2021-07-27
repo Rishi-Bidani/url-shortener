@@ -5,10 +5,31 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
-<body>
-
+<body class="flex flex-center">
+<!--    <%- JSON.stringify(data) %>-->
+<section id="data-container">
+    <% for(let i=0; i< data.length; i++) {%>
+    <div class="document flex">
+        <img src="<%= JSON.stringify(data[i].favicon).slice(1, -1) %>/favicon.ico"
+             alt="No Favicon">
+        <div class="margin-left-1 flex-column">
+            <p class="content">
+                <b>Full Link:</b>
+                <a href="<%- JSON.stringify(data[i].full).slice(1, -1) %>">
+                    <%- JSON.stringify(data[i].full).slice(1, -1); %>
+                </a>
+            </p>
+            <p class="content">
+                <b>Short Link:</b>
+                <%= JSON.stringify(data[i].short).slice(1, -1); %>
+            </p>
+        </div>
+    </div>
+    <%} %>
+</section>
 </body>
 </html>

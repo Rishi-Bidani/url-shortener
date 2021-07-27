@@ -70,14 +70,28 @@ router.post("/login", async (req, res)=>{
 router.post("/submit-link", async (req, res) => {
     const {fullLink} = req.body;
     console.log(fullLink);
-    usemongo.genKey().then((key) => {
-        console.log(key)
-        // res.end();
-        usemongo.writeKey(key, fullLink).then(async (data) => {
-            console.log(data)
-            res.json(key).end();
-        })
-    })
+    // usemongo.genKey().then((key) => {
+    //     console.log(key)
+    //     // res.end();
+    //     usemongo.writeKey(key, fullLink).then(async (data) => {
+    //         console.log(data)
+    //         res.json(key).end();
+    //     })
+    // })
+    const {unique, key} = await db.genKey()
+    if(unique){
+        const data = {
+            // username: req.session.username,
+            username: "admin",
+            short: `localhost:3000/${key}`,
+            full: fullLink,
+            key: key
+        }
+        await db.insert("urls", data)
+        res.status(201).json(key)
+    }else{
+        res.status(422).json("Failed")
+    }
 })
 
 

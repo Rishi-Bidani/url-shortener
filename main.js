@@ -8,6 +8,7 @@ const geoip = require('geoip-lite');
 const dotenv = require("dotenv").config({path: path.resolve(__dirname, ".env")});
 const session = require("express-session");
 const codeToCountry = require('./database/countryCodeData.json');
+const db = require("./backendjs/sqlknex");
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 const IN_PROD = process.env.NODE_ENV === "production"
 
@@ -64,10 +65,15 @@ app.get('/ip', (req, res) => {
 });
 
 
-app.get("/dashboard", redirectHome, (req, res)=>{
+app.get("/dashboard", redirectHome, async (req, res)=>{
     const user = req.session.userId
     // res.send(user+"Logged In")
-    res.render("dashboard")
+    const data = await db.find("urls", "username", user)
+    data.forEach((elem)=>{
+        const fullLink = elem["full"].split("/");
+        elem["favicon"] = fullLink[0] + "//" + fullLink[2];
+    })
+    res.render("dashboard", {data})
 })
 
 const port = process.env.PORT || 5000;

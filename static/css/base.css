@@ -31,3 +31,15 @@ body{
 .text-center{
     text-align: center;
 }
+
+.flex-center{
+    justify-content: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.margin-left-1{
+    margin-left: 1rem;
+}

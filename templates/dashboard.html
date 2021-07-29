@@ -11,9 +11,17 @@
 </head>
 <body>
 <!--    <%- JSON.stringify(data) %>-->
-<header class="auto-margin">
-
+<header class="auto-margin text-center">
+    <span class="title">URL-SHORTENER</span>
 </header>
+<nav id="buttons" class="contained flex auto-margin">
+    <div class="nav-button text-center auto-margin">
+        <span class="link-text" id="yourLinks">Your Links</span>
+    </div>
+    <div class="nav-button text-center auto-margin">
+        <span class="link-text" id="createLink">Create Link</span>
+    </div>
+</nav>
 <section id="data-container" class="auto-margin">
     <% for(let i=0; i< data.length; i++) {%>
     <div class="document flex">
@@ -34,5 +42,21 @@
     </div>
     <%} %>
 </section>
+
+<section id="create-link" class="auto-margin">
+</section>
+
+<script>
+    const createLink = document.querySelector("#createLink");
+    const yourLinks = document.querySelector("#yourLinks");
+    const yourLinkContent = document.querySelector("#data-container");
+    // Hide-Show Create Link or View Your Links
+    createLink.addEventListener("click", ()=>{
+        yourLinkContent.style.display = "none"
+    });
+    yourLinks.addEventListener("click", ()=>{
+        yourLinkContent.style.display = "block"
+    });
+</script>
 </body>
 </html>
